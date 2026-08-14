@@ -1,0 +1,5 @@
+#allCpu{min-height:42px;padding:7px 28px 7px 8px;line-height:1.15}
+#allCpu .spectator-main{display:block;font-size:9px;font-weight:800}
+#allCpu .spectator-sub{display:block;margin-top:3px;color:#8fa9b4;font-size:7px;font-weight:600;letter-spacing:.06em;text-transform:none}
+#allCpu.spectator-active .spectator-sub{color:#b9f6ff}
+#allCpu.spectator-active::after{position:absolute;right:6px;top:6px;margin:0}

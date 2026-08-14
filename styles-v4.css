@@ -1,0 +1,9 @@
+.format-tabs{grid-template-columns:repeat(4,1fr)}
+.quick-row{grid-template-columns:.82fr 1.18fr}
+#allCpu{position:relative;border-color:rgba(85,226,255,.32);background:linear-gradient(135deg,rgba(85,226,255,.09),rgba(139,124,255,.08));font-weight:700;letter-spacing:.02em}
+#allCpu.spectator-active{border-color:#55e2ff;background:linear-gradient(135deg,rgba(85,226,255,.22),rgba(139,124,255,.18));color:#e9fcff;box-shadow:0 0 18px rgba(85,226,255,.18)}
+#allCpu.spectator-active::after{content:"LIVE";display:inline-block;margin-left:6px;padding:2px 4px;border-radius:4px;background:#55e2ff;color:#071015;font-size:7px;letter-spacing:.12em;vertical-align:1px}
+.classic-mode .mode-tagline{border-left-color:#f4f1e8;background:rgba(244,241,232,.07)}
+.classic-mode .rule-strip{background:rgba(244,241,232,.06);border-color:rgba(244,241,232,.16)}
+.classic-mode .rule-strip b{color:#f4f1e8}
+@media(max-width:720px){.format-tabs{grid-template-columns:repeat(2,1fr)}.quick-row{grid-template-columns:1fr 1fr}}
