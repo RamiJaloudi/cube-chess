@@ -10,6 +10,10 @@ Cube Chess is a 3D chess variant played across all six faces of a cube, with wra
 
 The highlighted knight follows a legal engine-validated move sequence, becomes gateway-ready on the opposing back rank, and climbs from the floor to the right face.
 
+### Extended gameplay overview
+
+https://github.com/user-attachments/assets/6c9bcb9b-c2cd-405b-ba79-03a9bd205e7a
+
 ## Features
 
 - Full 3D rendering from inside the cube.
