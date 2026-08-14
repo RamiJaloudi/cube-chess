@@ -1,11 +1,15 @@
 {
   "name": "cube-chess-playable-prototype",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "dev": "node server.mjs"
+    "dev": "node server.mjs",
+    "api": "python -m cube_chess_api",
+    "api:key": "python -m cube_chess_api.cli create-key --label local-owner",
+    "test": "python -m pytest tests -q",
+    "check:browser": "node --check entry.mjs && node --check api-browser.mjs"
   },
   "engines": {
     "node": ">=18"

@@ -17,5 +17,6 @@ import './match-study.mjs';
 import './palette-mode.mjs';
 import './castling-ui.mjs';
 import './orientation-guides.mjs';
+import './api-browser.mjs';
 await import('./app-v2.mjs');
 await import('./release-stability.mjs');

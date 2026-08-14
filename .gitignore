@@ -3,6 +3,16 @@ dist/
 coverage/
 .cache/
 
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+data/
+*.db
+*.db-shm
+*.db-wal
+
 *.log
 npm-debug.log*
 
