@@ -1,24 +1,27 @@
 # Cube Chess
 
-Cube Chess is a browser-based 3D chess variant played from inside a six-faced cube. Traditional armies begin on flat 8x8 planes; pieces that break through the opposing back rank can later climb and move across connected cube faces.
+Cube Chess is a 3D chess variant played across all six faces of a cube, with wraparound movement and support for 2–12 players, including the 4-player Free-4-All, 6-player Hex Havoc, 8-player Octa-Brawl, 10-player Deca-Clash, and 12-player Mindfield free-for-all modes.
 
-The playable prototype now has two compatible paths:
+> **License:** This project is source-available and publicly viewable for evaluation, education, and personal non-commercial use only. Commercial licensing is available on request. See [LICENSE.md](LICENSE.md).
 
-- Local browser play with human and CPU controllers.
-- An authoritative FastAPI service for human, external-agent, CPU, and GPU-agent matches.
+## Features
 
-## Lean technology stack
+- Full 3D rendering from inside the cube.
+- An 8×8 board on each of the cube's six faces.
+- Straight and diagonal movement across connected edges after a piece advances through its gateway and becomes cube-enabled.
+- Standard two-player chess and Cube Chess modes for 2–12 players.
+- Configurable CPU opponents, including matches with zero to twelve CPU-controlled seats.
+- Standard-mode draw detection for threefold repetition, the 50-move rule, stalemate, and insufficient material.
+- Spectator Mode with pause, single-step, pace, and CPU-style controls, allowing enthusiasts and chess players to observe matches and study play.
+- An API for external agentic AI, human, CPU, and server-hosted GPU-agent play using REST and WebSocket connections.
+- Support for experiments in which GPU and hardware developers can connect agents that compete using their own inference systems.
+- A future goal of holding a Cube Chess Master Tournament for agentic AI and other AI systems. The tournament and any associated prizes have not been implemented.
 
-- Browser-native JavaScript modules, HTML, and CSS
-- Three.js/WebGL rendering with a WebXR interaction path
-- Dependency-free Node.js static server
-- Python 3.11+ and FastAPI for the agent API
-- SQLite for durable match state, event history, API keys, and seat tokens
-- REST for commands and polling; WebSocket for real-time match events
+## How to Run
 
-There is no browser compilation or bundling step.
+The browser game uses native JavaScript modules and a small Node.js server. The optional authoritative agent API uses Python, FastAPI, and SQLite. There is no browser compilation or bundling step.
 
-## Local browser play
+### Browser game
 
 Install Node.js 18 or newer, then run:
 
@@ -26,11 +29,11 @@ Install Node.js 18 or newer, then run:
 npm start
 ```
 
-Open `http://127.0.0.1:4173/`. The renderer is loaded from a public CDN, so the first page load requires an internet connection.
+Open `http://127.0.0.1:4173/` in a browser. The 3D renderer is loaded from a public CDN, so the first page load requires an internet connection.
 
-## Agent API
+### Agent API
 
-Create and activate a Python virtual environment, then run:
+Install Python 3.11 or newer. From the repository directory, run:
 
 ```powershell
 python -m pip install -r requirements-api.txt
@@ -38,42 +41,25 @@ python -m cube_chess_api.cli create-key --label local-owner
 npm run api
 ```
 
-The key is displayed once. Keep it private. The API listens at `http://127.0.0.1:8000`, with interactive OpenAPI documentation at `/docs`.
+The API starts at `http://127.0.0.1:8000/`, and its interactive API documentation is available at `http://127.0.0.1:8000/docs`. Run `npm start` in a second terminal to use the 3D browser client with an API match.
 
-Run `npm start` in a second terminal. The setup panel in the game accepts the API URL, API key, match ID, and optional seat token. An API key is always required; a scoped seat token is additionally required to make moves or use player actions.
-
-See [API.md](API.md) for match creation, agent interaction, WebSockets, GPU adapters, and security details.
-
-## Play formats
-
-- **Standard Chess:** traditional one-versus-one chess on the floor plane, presented from inside the cube.
-- **Coalition:** Face-Off, Double Bind, Triple Threat, Fourfront, Five-Alarm Siege, and Against All Sides.
-- **Teams:** Crossfire, Tri-Axis, Fourfront War, Pressure Cube, and Total Cube War.
-- **Free-for-All:** Free-4-All, Hex Havoc, Octa-Brawl, Deca-Clash, and the 12-player Mindfield format.
-
-Every army can be human, CPU, an external agent, or a configured server-hosted GPU agent. All-CPU/GPU matches support spectator play with pause, step, pace, and CPU-style controls. Match moves can be exported to CSV.
-
-## Verification
+To verify the project:
 
 ```powershell
 npm test
 npm run check:browser
 ```
 
-The tests cover traditional and cube rules, mode configuration, legal move IDs, stale-state rejection, persistence, authentication, WebSockets, FFA resignation, GPU plugin turns, spectator controls, and CSV export.
+## Rules
 
-## Project layout
+Standard mode follows traditional one-versus-one chess on a single floor plane. In Cube Chess modes, every army begins in a traditional formation on its home face. Pieces initially remain on that plane and cannot wrap across an edge. A piece that reaches the opposing back rank becomes gateway-ready; on a later turn it may climb through that edge, become cube-enabled, and continue legal straight or diagonal movement across connected cube faces.
 
-- `index.html`, `entry.mjs`, `app-v2.mjs` - browser entry, feature composition, 3D scene, controls, and local match loop
-- `engine-v2.mjs`, `cpu-v2.mjs` - browser rules and CPU player
-- `api-browser.mjs` - optional browser connection to authoritative API matches
-- `cube_chess_api/` - FastAPI app, Python rules engine, automation, persistence, security, events, GPU adapter, and CSV export
-- `tests/` - Python rules and API regression suite
-- `styles*.css` - cumulative visual layers used by the playable prototype
-- `server.mjs` - local static server
-- `RULES.md` - current gameplay rules
-- `API.md` - API setup and protocol guide
+A pawn promotes to a Queen, Rook, Bishop, or Knight when it reaches the opposing far edge on its home face. Standard castling and en passant are implemented on the starting plane. Castling across cube edges and cross-edge en passant are not currently implemented.
 
-## Current scope
+## Status
 
-Version one intentionally permits one active match at a time. Active state survives API restarts, and completed matches, events, and replays remain in SQLite. Webhooks and hosted internet matchmaking are not part of this local-first version; the event model is ready for a later webhook layer.
+Cube Chess is actively in development. Feedback and playtesters are welcome.
+
+## Contact
+
+For commercial licensing, publishing, or partnership inquiries, contact RJaloudi@gmail.com.
